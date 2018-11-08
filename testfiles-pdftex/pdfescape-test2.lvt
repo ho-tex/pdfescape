@@ -1,20 +1,18 @@
-%% This is file `pdfescape-test3.lvt',
+%%
+%% This is file `pdfescape-test2.lvt',
 %% The original source files were:
 %%
-%% pdfescape.dtx  (with options: `test3')
+%% pdfescape.dtx  (with options: `test2')
+%test assumes non active non-ascii
 \input{regression-test}
 \UseRawInputEncoding
 \NeedsTeXFormat{LaTeX2e}
 \makeatletter
-\ProvidesFile{pdfescape-test3.lvt}%
-    [2016/05/16 v1.14 Test without \string\pdfescape..., with e-TeX]%
-\let\pdfescapehex\@undefined
-\let\pdfunescapehex\@undefined
-\let\pdfescapename\@undefined
-\let\pdfescapestring\@undefined
-\@ifundefined{numexpr}{%
-  \PackageError{pdfescape-test3}{%
-    Missing \eTeX
+\ProvidesFile{pdfescape-test2.lvt}%
+    [2016/05/16 v1.14 Test with \string\pdfescape... commands]%
+\@ifundefined{pdfescapehex}{%
+  \PackageError{pdfescape-test2}{%
+    Missing \string\pdfescape... commands%
   }{Test aborted.}%
   \stop
 }{}
@@ -128,7 +126,7 @@
 \@onelevel@sanitize\AllBytesString
 
 \RequirePackage{pdfescape}
-
+\START
 \begin{qstest}{all-hex}{\AllBytes, escapehex}
   \EdefEscapeHex\x{\AllBytes}%
   \Expect*{\x}*{\AllBytesHex}%
@@ -180,6 +178,18 @@
     \@onelevel@sanitize\y
     \ExpectVar\x\y
   }%
+  \edef\x{\pdfunescapehex{4X}}%
+  \edef\y{\string @}%
+  \ifx\x\y
+  \else
+    \def~{\space}%
+    \typeout{************************************}%
+    \typeout{* Your pdfTeX contains bug 777.~~~~*}%
+    \typeout{* This test is redefined as dummy, *}%
+    \typeout{* because it triggers the bug.~~~~~*}%
+    \typeout{************************************}%
+    \def\test#1#2{}%
+  \fi
   \test{X}{}%
   \test{XY}{}%
   \test{XYZ}{}%
@@ -360,4 +370,4 @@
 \stop
 \endinput
 %%
-%% End of file `pdfescape-test3.tex'.
+%% End of file `pdfescape-test2.tex'.

@@ -1,20 +1,15 @@
-%% This is file `pdfescape-test3.lvt',
+%% This is file `pdfescape-test5.lvt',
 %% The original source files were:
 %%
-%% pdfescape.dtx  (with options: `test3')
+%% pdfescape.dtx  (with options: `test5')
 \input{regression-test}
-\UseRawInputEncoding
 \NeedsTeXFormat{LaTeX2e}
 \makeatletter
-\ProvidesFile{pdfescape-test3.lvt}%
-    [2016/05/16 v1.14 Test without \string\pdfescape..., with e-TeX]%
-\let\pdfescapehex\@undefined
-\let\pdfunescapehex\@undefined
-\let\pdfescapename\@undefined
-\let\pdfescapestring\@undefined
-\@ifundefined{numexpr}{%
-  \PackageError{pdfescape-test3}{%
-    Missing \eTeX
+\ProvidesFile{pdfescape-test5.lvt}%
+    [2016/05/16 v1.14 Test with LuaTeX]%
+\@ifundefined{directlua}{%
+  \PackageError{pdfescape-test5}{%
+    Missing LuaTeX%
   }{Test aborted.}%
   \stop
 }{}
@@ -128,7 +123,7 @@
 \@onelevel@sanitize\AllBytesString
 
 \RequirePackage{pdfescape}
-
+\START
 \begin{qstest}{all-hex}{\AllBytes, escapehex}
   \EdefEscapeHex\x{\AllBytes}%
   \Expect*{\x}*{\AllBytesHex}%
@@ -360,4 +355,4 @@
 \stop
 \endinput
 %%
-%% End of file `pdfescape-test3.tex'.
+%% End of file `pdfescape-test5.tex'.
