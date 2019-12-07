@@ -20,9 +20,9 @@ maxprintline=10000
 checkruns = 2
 
 tdslocations={
-"doc/latex/oberdiek/pdfescape.pdf",
-"source/latex/oberdiek/pdfescape.dtx",
-"tex/generic/oberdiek/pdfescape.sty",
+"doc/latex/pdfescape/pdfescape.pdf",
+"source/latex/pdfescape/pdfescape.dtx",
+"tex/generic/pdfescape/pdfescape.sty",
 
 }
 
